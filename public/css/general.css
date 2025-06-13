@@ -1,0 +1,86 @@
+/* Règles génériques -----------------------  ==== ref = M.Charpentier*/
+
+/* Rétablir les marges intérieures & extérieures sur tout */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Base typographique à être héritée ==== ref = M.Charpentier*/
+html {
+  font-family: var(--police-general);
+  line-height: var(--interligne-base);
+  font-size: var(--taille-police-normal);
+  color: var(--couleur-texte);
+  background-color: var(--couleur-fond);
+}
+
+/* Lien */
+a {
+  text-decoration: none;
+  color: var(--couleur-texte);
+}
+
+/* Navigation */
+nav > div {
+  display: flex;
+  flex-direction: row;
+  gap: var(--rythme-espace);
+}
+
+nav a {
+  text-transform: uppercase;
+  font-weight: var(--epaisseur-police-gras);
+  align-content: center;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+/* Titre */
+h1 {
+  font-size: var(--taille-police-gros);
+  font-weight: var(--epaisseur-police-tres-gras);
+  line-height: var(--interligne-logo);
+  text-transform: uppercase;
+  transition: all;
+}
+
+h1:hover {
+  text-decoration: underline;
+}
+
+h2 {
+  border-bottom: 1px solid var(--couleur-principale);
+  padding-bottom: var(--rythme-serre);
+  margin-bottom: var(--rythme-base);
+  font-size: var(--taille-police-grand);
+  font-weight: var(--epaisseur-police-tres-gras);
+  line-height: var(--interligne-grand);
+}
+
+h2 > span {
+  font-size: var(--taille-police-moyen);
+  margin-left: var(--rythme-base);
+  font-weight: var(--epaisseur-police-gras);
+}
+
+h3 {
+  font-size: var(--taille-police-moyen);
+  margin: var(--rythme-serre) 0;
+  color: var(--couleur-principale);
+}
+
+/*Autre*/
+
+.texte-accentuation {
+  font-size: var(--taille-police-moyen);
+  font-weight: var(--epaisseur-police-gras);
+}
+
+/* MAIN */
+main > section {
+  margin: var(--rythme-espace);
+}

@@ -1,0 +1,6 @@
+.bas-page {
+  background-color: var(--couleur-principale);
+  color: var(--couleur-fond);
+  padding: var(--rythme-base);
+  text-align: center;
+}

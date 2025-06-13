@@ -1,0 +1,70 @@
+/*Header*/
+.entete {
+  display: flex;
+  padding: var(--rythme-base);
+  gap: var(--rythme-tres-espace);
+  align-items: center;
+  border-bottom: solid 3px var(--couleur-principale);
+}
+
+.entete .menu-principal {
+  display: flex;
+  flex-direction: row;
+  gap: var(--rythme-espace);
+}
+
+/*------------------------------------------------------------------------------ */
+.entete .sousMenu {
+  position: relative;
+  min-width: 250px;
+}
+
+.entete .sousMenu > div {
+  background-color: var(--couleur-fond);
+  border: solid 2px var(--couleur-secondaire);
+  border-radius: var(--arrondi-petit);
+  display: none;
+  position: absolute;
+  padding: var(--rythme-base);
+  left: 0;
+  top: 100%; /*position du menu pour arriver en bas du lien parent*/
+  text-align: center;
+}
+
+.entete .sousMenu:hover > div {
+  display: flex;
+  flex-direction: column;
+  gap: var(--rythme-serre);
+}
+
+/* Taille d'ecran inferieur a 1170px */
+@media screen and (max-width: 1170px) {
+  .entete {
+    flex-direction: column;
+    gap: 0;
+    text-align: center;
+    padding: var(--rythme-tres-serre);
+    align-items: stretch;
+  }
+
+  .entete > .menu-principal {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .entete > .menu-principal > div {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  /* Gestion du sous-menu */
+  .entete .sousMenu {
+    padding: var(--rythme-serre);
+    border-top: 1px solid var(--couleur-texte);
+  }
+
+  .entete .sousMenu > div {
+    display: none;
+    position: relative;
+  }
+}

@@ -1,0 +1,53 @@
+/* Bouton et barre recherche */
+.recherche {
+  display: flex;
+  flex-direction: column;
+  gap: var(--rythme-tres-serre);
+}
+
+.recherche-barre {
+  display: inline-block;
+  white-space: nowrap; /* Empêche le retour à la ligne entre les éléments */
+}
+
+.recherche-barre > input[type="text"] {
+  width: 300px;
+  padding: var(--rythme-tres-serre);
+  border: 1px solid var(--couleur-bordure);
+  border-radius: var(--arrondi-petit) 0 0 var(--arrondi-petit);
+  margin-bottom: var(
+    --rythme-tres-serre
+  ); /* Pour avoir un meilleur alignement dans le header. */
+}
+
+.recherche-barre > input[type="submit"],
+.recherche-barre > button {
+  background-color: var(--couleur-secondaire);
+  padding: var(--rythme-tres-serre) var(--rythme-base);
+  border: 1px solid var(--couleur-secondaire);
+  border-radius: 0 var(--arrondi-petit) var(--arrondi-petit) 0;
+}
+
+.recherche-barre > input[type="submit"]:hover,
+.recherche-barre > button:hover {
+  background-color: var(--couleur-fond);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  transform: scale(1.05);
+  transition-duration: 100ms;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--couleur-bordure);
+}
+/* Masquer le span Trouver obligatoire WAVE */
+.recherche-cache {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+  border: 0;
+  white-space: nowrap;
+}

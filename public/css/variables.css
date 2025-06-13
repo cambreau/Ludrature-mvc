@@ -1,0 +1,39 @@
+/* Variables CSS */
+:root {
+  /* --- Espacement --- */
+  --rythme-tres-serre: 5px;
+  --rythme-serre: 10px;
+  --rythme-base: 20px;
+  --rythme-espace: 40px;
+  --rythme-tres-espace: 80px;
+  /* --- Couleurs --- */
+  --couleur-fond: #fffbf7;
+  --couleur-texte: #545454;
+  --couleur-principale: #df5561;
+  --couleur-secondaire: #688d80;
+  --couleur-bordure: #77474b;
+  /* --- Interligne --- */
+  --interligne-base: 1.5625em;
+  --interligne-grand: 2.5rem;
+  --interligne-logo: 1.78em;
+  /* --- Police --- */
+  --police-general: "Lora", sans-serif;
+  --police-decorative: "Lora", italic;
+  /* --- Taille de police --- */
+  --taille-police-petit: 0.9rem;
+  --taille-police-normal: 1rem;
+  --taille-police-moyen: 1.2rem;
+  --taille-police-grand: 1.8rem;
+  --taille-police-gros: 2rem;
+  /* --- Epaisseur de police --- */
+  --epaisseur-police-normale: 400;
+  --epaisseur-police-gras: 500;
+  --epaisseur-police-tres-gras: 700;
+  /* Border-radius */
+  --arrondi-petit: 4px;
+  --arrondi-grand: 8px;
+  /* Points de rupture (ne peuvent pas être utilisés comme variables, mais sont indiqués à titre informatif). */
+  /* --ecran-petit: 768px;
+     --ecran-moyen: 1170px;
+     --ecran-large: 1450px; */
+}

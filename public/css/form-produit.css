@@ -1,0 +1,29 @@
+.form-produit {
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  margin: auto;
+  margin-bottom: var(--rythme-espace);
+}
+
+.form-produit > label {
+  color: var(--couleur-secondaire);
+  margin-top: var(--rythme-serre);
+  margin-bottom: var(--rythme-tres-serre);
+}
+
+.non-modifiable {
+  display: flex;
+  width: 400px;
+  margin: auto;
+  margin-bottom: 0;
+}
+
+.non-modifiable > .label-non-modifiable {
+  color: var(--couleur-principale);
+  width: 80px;
+}
+
+.non-modifiable > .input-non-modifiable {
+  margin-left: var(--rythme-serre);
+}
