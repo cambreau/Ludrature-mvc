@@ -34,15 +34,15 @@ abstract class CRUD extends \PDO{
     }
 
        public function selectWhere($value, $champ, $columns = '*'){
-        $sql = "SELECT $columns FROM $this->table WHERE $champ = :$value";
+        $sql = "SELECT $columns FROM $this->table WHERE $champ = :$champ";
         $stmt = $this->prepare($sql);
-        $stmt->bindValue(":$value", $value);
+        $stmt->bindValue(":$champ", $value);
         $stmt->execute();
         return $stmt->fetchAll();
     }
 
 
-    public function insert( $data){
+    public function insert($data){
         $data_keys = array_fill_keys($this->colonnes, '');
         $data = array_intersect_key($data, $data_keys);
         $champName = implode(', ', array_keys($data));
@@ -53,28 +53,29 @@ abstract class CRUD extends \PDO{
             $stmt->bindValue(":$key", $value);
         }
         if($stmt->execute()){
-            return $this->lastInsertId();
+            return $this->autoIncrement ?? true ? $this->lastInsertId() : true;
         } else {
             return false;
         } 
     }
 
-    public function update($data){
-        $data_keys = array_fill_keys($this->colonnes, '');
-        $data = array_intersect_key($data, $data_keys);
+    public function update($data, $id){
+        $data_cles = array_fill_keys($this->colonnes, '');
+        $data = array_intersect_key($data, $data_cles);
+        
         $champName = null;
-        foreach($data as $key=>$value){
-            $champName .= "$key = :$key, ";
+        foreach($data as $cle=>$valeur){
+            $champName .= "$cle = :$cle, ";
         }
         $champName = rtrim($champName, ', ');
         
         $sql = "UPDATE $this->table SET $champName WHERE $this->clePrimaire = :$this->clePrimaire";
+        $data[$this->clePrimaire] = $id;
         $stmt = $this->prepare($sql);
         
-        foreach($data as $key=>$value){
-            $stmt->bindValue(":$key", $value);
+        foreach($data as $cle=>$valeur){
+            $stmt->bindValue(":$cle", $valeur);
         }
-        $stmt->bindValue(":$champ", $id);  // Bind the WHERE clause parameter
         
         if($stmt->execute()){
             return true;

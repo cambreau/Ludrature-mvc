@@ -11,9 +11,9 @@
         <h2 class="produits-section__titre">Nos produits</h2>
         <div class="produits-conteneur">
             {% for produit in produits %}
-                <a class="produit produit-lien" href="fiche-produit.php?id={{ produit.id }}">
+                <a class="produit produit-lien" href="{{base}}/produits/fiche-produit?id={{ produit.id }}">
                     <picture class="produit-image">
-                        <img src="../public/images/produit-{{ produit.id }}.jpg" alt="{{ produit.nom }}" />
+                        <img src="{{asset}}/images/produit-{{ produit.id }}.jpg" alt="{{ produit.nom }}" />
                     </picture>
                     <h3>{{produit.nom}}</h3>
                     <div class="produit-description">

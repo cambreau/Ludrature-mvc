@@ -4,7 +4,9 @@ use App\Models\CRUD;
 
 class ProduitTheme extends CRUD {
     protected $table = "produit_theme";
-    protected $clePrimaire = "id";
-    protected $colonnes = ['categorie_id','nom'];
+    protected $autoIncrement = false;
+
+    protected $clePrimaire ='produit_id';
+    protected $colonnes = ['produit_id','theme_id'];
 
 }

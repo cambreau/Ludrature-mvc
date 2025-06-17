@@ -27,7 +27,7 @@
           </select>
           <input type="hidden" name="categorie" value="{{ categorieSelection }}">
       </form>
-      <form class="form-produit" method="post" action="{{base}}/produits/action-ajouter">
+      <form class="form-produit" method="post" action="{{base}}/produits/actionAjouter">
           <input type="hidden" name="categorie" value="{{ categorieSelection }}">
           {% if themesSelection is defined %}
             {% for theme in themesSelection %}
