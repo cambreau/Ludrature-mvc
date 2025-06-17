@@ -1,6 +1,11 @@
 {{ include('./layouts/header.php', {title: 'Ajouter - Ludrature : Boutique Jeux et Livre'}) }}
 
  <h2>Ajouter un produit</h2>
+      {% if erreurs is defined %}
+        {% for erreur in erreurs %}
+        <p>{{erreur}}</p>
+        {%endfor%}
+      {%endif%}
       <form class="form-produit" method="get">
         <label for="categorie">Catégorie:</label>
         <select name="categorie" id="categorie" onchange="this.form.submit()" required >

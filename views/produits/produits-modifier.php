@@ -1,5 +1,10 @@
 {{ include('./layouts/header.php', {title: 'Modifier - Ludrature : Boutique Jeux et Livre'}) }}
   <h2>Modifier le produit numéro {{produit.id}} {{produit.nom}}</h2>
+   {% if erreurs is defined %}
+        {% for erreur in erreurs %}
+        <p>{{erreur}}</p>
+        {%endfor%}
+    {%endif%}
        <div class="non-modifiable">
         <p class="label-non-modifiable">Catégorie:</p>
         <p class="input-non-modifiable">{{categorie.nom}}</p>
