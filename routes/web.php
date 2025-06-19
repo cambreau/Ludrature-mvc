@@ -1,6 +1,5 @@
 <?php
 use App\Routes\Route;
-use App\Controllers\AccueilController;
 
 Route::get('', 'AccueilController@index');
 Route::get('/', 'AccueilController@index');

@@ -1,5 +1,6 @@
 <?php
 namespace App\Routes;
+use App\Providers\View;
 
 class Route {
     // Declaration d'une variable de type array qui contiendra les routes. Methode static donc pas besoin d'instancier
@@ -61,6 +62,6 @@ class Route {
             }
         }
         http_response_code(404);
-        echo "404 page not found";
+        View::render('erreur404', ['message'=>'Page introuvable!']);
     }
 }

@@ -12,11 +12,12 @@
                 <p>Prix: {{ produit.prix }} $</p>
                 <p>Age: {{ produit.age_min }} 
                 {%if produit.age_max is defined %}   
-                   - {{ produit.age_max }} ans
+                   - {{ produit.age_max }}
                 {%endif %}
+                ans
                 <div class="bouton-conteneur">
-                  <a class="bouton" href="{{Base}}/produits/produits-modifier?id={{ produit.id }}">Modifier</a>
-                  <form method="post" action="/produit/supprimer">
+                  <a class="bouton" href="{{base}}/produits/produits-modifier?id={{ produit.id }}">Modifier</a>
+                  <form method="post" action="{{base}}/produit/supprimer">
                       <input type="hidden" name="id" value="{{ produit.id }}">
                       <button class="bouton bouton-rouge" type="submit">Supprimer</button>
                   </form>

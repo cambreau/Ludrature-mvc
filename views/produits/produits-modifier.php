@@ -15,7 +15,7 @@
             <p class="input-non-modifiable">{{theme.nom}}</p>
         {% endfor %}
       </div>
-      <form class="form-produit" method="post" action="/produits/actionModifier">
+      <form class="form-produit" method="post" action="{{base}}/produits/actionModifier">
         <input type="hidden" name="id" value="{{produit.id}}"/>
         <label for="nom">Nom:</label>
         <input type="text" id="nom" name="nom" value="{{produit.nom}}" required/>

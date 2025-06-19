@@ -81,6 +81,31 @@ h3 {
 }
 
 /* MAIN */
-main > section {
+main > * {
   margin: var(--rythme-espace);
+}
+
+/* Flexbox layout to keep footer at bottom */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  margin: var(--rythme-espace);
+}
+
+main > * {
+  flex: 1;
 }

@@ -17,7 +17,7 @@
                     </picture>
                     <h3>{{produit.nom}}</h3>
                     <div class="produit-description">
-                        <p>{{produit.auteur}}</p>
+                        <p>Auteur: {{produit.auteur}}</p>
                         <p>Edition: {{produit.edition}}</p>
                         <p>Prix: {{produit.prix}}$</p>
                         <p>Age: {{produit.age_min}} 
