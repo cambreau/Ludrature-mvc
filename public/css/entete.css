@@ -1,8 +1,8 @@
 /*Header*/
 .entete {
-  display: flex;
+  display: grid;
+  grid-template-columns: 3fr 3fr 3fr 1fr;
   padding: var(--rythme-base);
-  gap: var(--rythme-tres-espace);
   align-items: center;
   border-bottom: solid 3px var(--couleur-principale);
 }
@@ -10,13 +10,13 @@
 .entete .menu-principal {
   display: flex;
   flex-direction: row;
-  gap: var(--rythme-espace);
+  gap: var(--rythme-base);
 }
 
 /*------------------------------------------------------------------------------ */
 .entete .sousMenu {
   position: relative;
-  min-width: 250px;
+  min-width: 200px;
 }
 
 .entete .sousMenu > div {

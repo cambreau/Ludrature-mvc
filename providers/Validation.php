@@ -56,6 +56,47 @@ class Validation {
     }
 
     /**
+     * Valide le format de l'adresse courriel
+     * https://www.php.net/manual/en/function.filter-var.php
+     */
+    public function email() {
+        if (!empty($this->valeur) && !filter_var($this->valeur, FILTER_VALIDATE_EMAIL)) {
+            $this->erreurs[$this->cle]="Format $this->nom invalid.";
+        }
+        return $this;
+    }
+
+    /**
+    * Vérifie que la valeur du champ est unique..
+     */
+    public function unique($model){
+        $model = 'App\\Models\\'.$model;
+        $model = new $model;
+        $unique = $model->unique($this->cle, $this->valeur);
+        if($unique){
+            $this->erreurs[$this->cle]="$this->nom doit être unique.";
+        }
+        return $this;
+    }
+
+    /* Valide le format des mot de passes */
+    public function formatMotDePasse(){
+        $regEx = "/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/";
+        $valide = preg_match($regEx,$this->valeur);
+        if(!$valide){
+            $this->erreurs[$this->cle]=" Le mot de passe est obligatoire et doit contenir au minimum 8
+              caractères dont une lettre et un chiffre.";
+        }
+        return $this;
+    }
+
+    public function confirmationChampIdentique($dataOriginale){
+        if($this->valeur !== $dataOriginale){
+            $this->erreurs[$this->cle]="Les deux champs $this->nom doivent être identiques";  
+        }
+    }
+
+    /**
      * Si il n'y a aucune erreur retourne vrai.
      */
     public function estUnSucces(){

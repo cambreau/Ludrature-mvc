@@ -25,7 +25,7 @@
   <body>
     <!-- navigation =================================================================================================-->
     <header class="entete">
-      <a class="titre-logo" href="{{base}}/accueil/index">
+      <a class="titre-logo" href="{{base}}/accueil">
         <img src="{{asset}}/images/logo.svg" alt="Logo du restaurant Ludrature" />
         <h1><span class="titre-logo__titre-rouge">Lud</span>rature</h1></a
       >
@@ -51,5 +51,6 @@
             <a href="#">Livres <span>&#9663;</span></a>
           </div>
       </nav>
+      <a class="bouton bouton-petit bouton-rouge" href="{{base}}/autorisations/se-connecter">Se connecter</a>
     </header>
     <main>

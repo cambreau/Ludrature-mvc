@@ -30,3 +30,9 @@
   border: 2px solid var(--couleur-principale);
   color: var(--couleur-principale);
 }
+
+.bouton-petit {
+  min-width: 160px;
+  font-size: var(--taille-police-normal);
+  margin-top: 0;
+}
