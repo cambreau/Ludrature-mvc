@@ -5,30 +5,42 @@
 }
 
 .produits-conteneur {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: var(--rythme-base);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--rythme-espace);
+  justify-content: center;
 }
 
 .produit {
-  display: grid;
-  grid-template-rows: 3fr 0.5fr 2fr;
-  padding: var(--rythme-serre) var(--rythme-base) 0 var(--rythme-base);
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--couleur-secondaire);
+  border-radius: var(--arrondi-petit);
+  padding: var(--rythme-base);
+  position: relative;
 }
 
-.produit-lien:hover {
-  opacity: 0.6;
+.produit:hover {
+  border: 1px solid var(--couleur-principale);
+  background-color: rgb(240, 208, 208);
 }
 
 .produit-image {
+  display: block;
   width: 150px;
   height: 230px;
-  margin: auto;
-  margin-bottom: var(--rythme-base);
 }
 
 .produit-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  border-radius: var(--arrondi-petit);
+}
+
+.produit-description {
+  margin-bottom: var(--rythme-base);
 }

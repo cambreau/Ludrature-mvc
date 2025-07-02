@@ -4,16 +4,16 @@
 
 <section>
         <h2>Modification du profil</h2>
-        <form class="form" method="post" action="/clients/modifier">
-        <div class="form__champ">
+        <form class="form" method="post" action="/utilisateurs/modifier">
+            <div class="form__champ">
               <label for="nomUtilisateur">Nom Utilisateur :</label>
               <input
                 type="text"
                 id="nomUtilisateur"
                 name="nomUtilisateur"
-                placeholder="Veuillez saisir votre nom utilisateur"
-                {% if client.nomUtilisateur is defined %}
-                value="{{client.nomUtilisateur}}"
+                placeholder="Veuillez saisir le nom utilisateur"
+                {% if utilisateur.nomUtilisateur is defined %}
+                value="{{utilisateur.nomUtilisateur}}"
                 {%endif %}
                 required
               />
@@ -27,9 +27,9 @@
                 type="text"
                 id="nom"
                 name="nom"
-                placeholder="Veuillez saisir votre nom"
-                {% if client.nom is defined %}
-                value="{{client.nom}}"
+                placeholder="Veuillez saisir le nom"
+                {% if utilisateur.nom is defined %}
+                value="{{utilisateur.nom}}"
                 {%endif %}
                 required
               />
@@ -43,9 +43,9 @@
                 type="text"
                 id="prenom"
                 name="prenom"
-                placeholder="Veuillez saisir votre prénom"
-                {% if client.prenom is defined %}
-                value="{{client.prenom}}"
+                placeholder="Veuillez saisir le prénom"
+                {% if utilisateur.prenom is defined %}
+                value="{{utilisateur.prenom}}"
                 {%endif %}
                 required
               />
@@ -59,9 +59,9 @@
                 type="email"
                 id="email"
                 name="email"
-                placeholder="Veuillez saisir votre adresse courriel"
-                {% if client.email is defined %}
-                value="{{client.email}}"
+                placeholder="Veuillez saisir l'adresse courriel"
+                {% if utilisateur.email is defined %}
+                value="{{utilisateur.email}}"
                 {%endif %}
                 required
               />
@@ -69,50 +69,70 @@
             {% if erreurs.email is defined %}
               <p class="erreur">{{erreurs.email}}</p>
             {%endif %}
-            <div class="form__champ">
-              <label for="adresse">Adresse :</label>
-              <input
-                type="text"
-                id="adresse"
-                name="adresse"
-                placeholder="Veuillez saisir votre adresse"
-                {% if client.adresse is defined %}
-                value="{{client.adresse}}"
-                {%endif %}
-                required
-              />
-            </div>
-            {% if erreurs.adresse is defined %}
-              <p class="erreur">{{erreurs.adresse}}</p>
+            {% if utilisateur.role == 1 %}
+              <div class="form__champ">
+                <label for="adresse">Adresse :</label>
+                <input
+                  type="text"
+                  id="adresse"
+                  name="adresse"
+                  placeholder="Veuillez saisir votre adresse"
+                  {% if utilisateur.adresse is defined %}
+                  value="{{utilisateur.adresse}}"
+                  {%endif %}
+                  required
+                />
+              </div>
+              {% if erreurs.adresse is defined %}
+                <p class="erreur">{{erreurs.adresse}}</p>
+              {%endif %}
+              <div class="form__champ">
+                <label for="codePostal">Code postal :</label>
+                <input
+                  type="text"
+                  id="codePostal"
+                  name="codePostal"
+                  placeholder="Veuillez saisir votre code postal"
+                  {% if utilisateur.codePostal is defined %}
+                  value="{{utilisateur.codePostal}}"
+                  {%endif %}
+                  required
+                />
+              </div>
+              {% if erreurs.codePostal is defined %}
+                <p class="erreur">{{erreurs.codePostal}}</p>
+              {%endif %}
+              <div class="form__champ">
+                <label for="ville">Ville :</label>
+                <select id="ville" name="ville" required>
+                  <option value="">-- Sélectionnez une ville --</option>
+                  {% for ville in villes %}
+                    <option value="{{ ville.id }}" {% if ville.id == utilisateur.ville %}
+                      selected
+                    {%endif %}>
+                    {{ ville.nom }}</option>
+                  {%endfor%}
+                </select>
+              </div>
             {%endif %}
-            <div class="form__champ">
-              <label for="codePostal">Code postal :</label>
-              <input
-                type="text"
-                id="codePostal"
-                name="codePostal"
-                placeholder="Veuillez saisir votre code postal"
-                {% if client.codePostal is defined %}
-                value="{{client.codePostal}}"
-                {%endif %}
-                required
-              />
-            </div>
-            {% if erreurs.codePostal is defined %}
-              <p class="erreur">{{erreurs.codePostal}}</p>
+            {% if utilisateur.role == 2 %}
+              <div class="form__champ">
+                <label for="emploi">Emploi :</label>
+                <input
+                  type="text"
+                  id="emploi"
+                  name="emploi"
+                  placeholder="Veuillez saisir l'emploi"
+                  {% if utilisateur.emploi is defined %}
+                  value="{{utilisateur.emploi}}"
+                  {%endif %}
+                  required
+                />
+              </div>
+              {% if erreurs.emploi is defined %}
+                <p class="erreur">{{erreurs.emploi}}</p>
+              {%endif %}
             {%endif %}
-            <div class="form__champ">
-              <label for="ville">Ville :</label>
-              <select id="ville" name="ville" required>
-                <option value="">-- Sélectionnez une ville --</option>
-                {% for ville in villes %}
-                  <option value="{{ ville.id }}" {% if ville.id == client.ville %}
-                    selected
-                  {%endif %}>
-                  {{ ville.nom }}</option>
-                {%endfor%}
-              </select>
-            </div>
             <div class="form__champ">
               <label for="motDePasse">Mot de passe :</label>
               <input

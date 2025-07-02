@@ -8,7 +8,7 @@ class AccueilController{
     public function index(){
         $produitCrud = new Produit;
         $produits =$produitCrud->select();
-        $utilisateur = $_SESSION['utilisateur'] ?? null;
-        return View::render('accueil',['produits'=>$produits, 'utilisateur'=>$utilisateur]);
+        $session = $_SESSION ?? null;
+        return View::render('accueil',['produits'=>$produits, 'session'=>$session]);
     }
 }

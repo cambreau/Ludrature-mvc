@@ -27,74 +27,88 @@ class ProduitsController{
     }
 
     public function formulaireAjouter(){
-        $categorieSelection = null;
-        $themesSelection = null;
-        if (isset($_GET['categorie'])){
-            $categorieSelection = $_GET['categorie'];
+        if(!isset($_SESSION) || $_SESSION['utilisateur_role'] !==2)
+        {
+            return View::render('erreur404', ['message'=>"Erreur - Nous n'avez pas les droits!"]);
         }
-        if (isset($_GET['themes'])){
-            $themesSelection = $_GET['themes'];
-        }
-        // Recuperer les options themes par categorie.
-        $themeCrud = new Theme;
-        $themesJeux = $themeCrud->selectWhere(1,'categorie_id');
-        $themesLivre = $themeCrud->selectWhere(2,'categorie_id');
-        // Recuperer les options de categorie.
-        $categorieCrud = new Categorie;
-        $categories = $categorieCrud->select();
-        return View::render('produits/produits-ajouter',['categories'=>$categories, 'themesJeux'=>$themesJeux, 'themesLivre'=>$themesLivre,'categorieSelection'=>$categorieSelection,'themesSelection'=>$themesSelection]);
+            $categorieSelection = null;
+            $themesSelection = null;
+            if (isset($_GET['categorie'])){
+                $categorieSelection = $_GET['categorie'];
+            }
+            if (isset($_GET['themes'])){
+                $themesSelection = $_GET['themes'];
+            }
+            // Recuperer les options themes par categorie.
+            $themeCrud = new Theme;
+            $themesJeux = $themeCrud->selectWhere(1,'categorie_id');
+            $themesLivre = $themeCrud->selectWhere(2,'categorie_id');
+            // Recuperer les options de categorie.
+            $categorieCrud = new Categorie;
+            $categories = $categorieCrud->select();
+            return View::render('produits/produits-ajouter',['categories'=>$categories, 'themesJeux'=>$themesJeux, 'themesLivre'=>$themesLivre,'categorieSelection'=>$categorieSelection,'themesSelection'=>$themesSelection]);
     }
 
     public function actionAjouter($data){
-        // Validation des $data.
-        $Validation = new Validation;
-        $Validation->field('nom',$data['nom'])->min(2)->max(100);
-        $Validation->field('auteur',$data['auteur'])->min(2)->max(100);
-        $Validation->field('edition',$data['edition'])->min(2)->max(100);
-        $Validation->field('date_sortie',$data['date_sortie'])->obligatoire();
-        $Validation->field('prix',$data['prix'])->min(1)->max(20);
-        $Validation->field('age_min',$data['age_min'])->obligatoire();
+        if(!isset($_SESSION) || $_SESSION['utilisateur_role'] !==2)
+        {
+            return View::render('erreur404', ['message'=>"Erreur - Nous n'avez pas les droits!"]);
+        }
+            // Validation des $data.
+            $Validation = new Validation;
+            $Validation->field('nom',$data['nom'])->min(2)->max(100);
+            $Validation->field('auteur',$data['auteur'])->min(2)->max(100);
+            $Validation->field('edition',$data['edition'])->min(2)->max(100);
+            $Validation->field('date_sortie',$data['date_sortie'])->obligatoire();
+            $Validation->field('prix',$data['prix'])->min(1)->max(20);
+            $Validation->field('age_min',$data['age_min'])->obligatoire();
 
-        if($Validation->estUnSucces()){
-            // Insertion du produit.
-            $produitCrud = new Produit;
-            $produit_id = $produitCrud->insert($_POST);
-            if(!$produit_id){
-                return View::render('erreur404', ['message'=>"404 - L'insertion a échoué"]);   
-            }
-            else{
-                // Insertion du produit-theme
-                $themes = $data['themes'];
-                $produitThemeCrud = new ProduitTheme;
-                foreach ($themes as $theme_id) {
-                    $produitTheme = $produitThemeCrud -> insert(['produit_id' => $produit_id,'theme_id' => $theme_id]);
-                    if(!$produitTheme){
-                        return View::render('erreur404', ['message'=>"404 - L'insertion a échoué"]); 
+            if($Validation->estUnSucces()){
+                // Insertion du produit.
+                $produitCrud = new Produit;
+                $produit_id = $produitCrud->insert($_POST);
+                echo $produit_id;
+                if(!$produit_id){
+                    return View::render('erreur404', ['message'=>"404 - L'insertion a échoué"]);   
+                }
+                else{
+                    // Insertion du produit-theme
+                    $themes = $data['themes'];
+                    $produitThemeCrud = new ProduitTheme;
+                    foreach ($themes as $theme_id) {
+                        $produitTheme = $produitThemeCrud -> insert(['produit_id' => $produit_id,'theme_id' => $theme_id]);
+                        echo $produitTheme;
+                        if(!$produitTheme){
+                            return View::render('erreur404', ['message'=>"404 - L'insertion a échoué"]); 
+                        }
                     }
                 }
+                        $produit = $produitCrud -> selectId($produit_id);
+                        return View::render('produits/fiche-produit',['produit'=>$produit]);
             }
-            $produit = $produitCrud -> selectId($produit_id);
-            return View::render('produits/fiche-produit',['produit'=>$produit]);
-    }
-    else{
-        $erreurs = $Validation->geterreurs();
-         // Recuperer les options themes par categorie.
-        $themeCrud = new Theme;
-        $themesJeux = $themeCrud->selectWhere(1,'categorie_id');
-        $themesLivre = $themeCrud->selectWhere(2,'categorie_id');
-        // Recuperer les options de categorie.
-        $categorieCrud = new Categorie;
-        $categories = $categorieCrud->select();
-        // Recuperer categorieSelection
-        $categorieSelection = $data['categorie'];
-        // Recuperer categorieSelection
-        $themesSelection = $data['themes'];
+             else{
+                $erreurs = $Validation->geterreurs();
+                // Recuperer les options themes par categorie.
+                $themeCrud = new Theme;
+                $themesJeux = $themeCrud->selectWhere(1,'categorie_id');
+                $themesLivre = $themeCrud->selectWhere(2,'categorie_id');
+                // Recuperer les options de categorie.
+                $categorieCrud = new Categorie;
+                $categories = $categorieCrud->select();
+                // Recuperer categorieSelection
+                $categorieSelection = $data['categorie'];
+                // Recuperer categorieSelection
+                $themesSelection = $data['themes'];
 
-        return View::render('produits/produits-ajouter',['categories'=>$categories, 'themesJeux'=>$themesJeux, 'themesLivre'=>$themesLivre,'categorieSelection'=>$categorieSelection,'themesSelection'=>$themesSelection, 'erreurs'=>$erreurs ]);
-    }
-}
+                return View::render('produits/produits-ajouter',['categories'=>$categories, 'themesJeux'=>$themesJeux, 'themesLivre'=>$themesLivre,'categorieSelection'=>$categorieSelection,'themesSelection'=>$themesSelection, 'erreurs'=>$erreurs ]);
+            }
+    }   
 
     public function formulaireModifier(){
+        if(!isset($_SESSION) || $_SESSION['utilisateur_role'] !==2)
+        {
+            return View::render('erreur404', ['message'=>"Erreur - Nous n'avez pas les droits!"]);
+        }
          if(isset($_GET['id']) && $_GET['id'] != null){
             // ** Recuperer les informations du produit.
             $produitCrud = new Produit;
@@ -172,6 +186,10 @@ class ProduitsController{
     }
 
     public function actionModifier($data){
+        if(!isset($_SESSION) || $_SESSION['utilisateur_role'] !==2)
+        {
+            return View::render('erreur404', ['message'=>"Erreur - Nous n'avez pas les droits!"]);
+        }
         // Validation des $data.
         $Validation = new Validation;
         $Validation->field('nom',$data['nom'])->min(2)->max(100);
@@ -218,6 +236,10 @@ class ProduitsController{
     }
 
     public function supprimer($data){
+        if(!isset($_SESSION) || $_SESSION['utilisateur_role'] !==2)
+        {
+            return View::render('erreur404', ['message'=>"Erreur - Nous n'avez pas les droits!"]);
+        }
         // echo "Je suis dans supprimer";
         if(isset($data['id']) && $data['id'] != null){
             //Supression des lignes correspond au produit dans la table produit-theme.
@@ -234,5 +256,5 @@ class ProduitsController{
             }
         }  
         else{ return View::render('erreur404', ['Erreur 404 - Page introuvable!']);} 
-    }
+}
 }

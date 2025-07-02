@@ -18,10 +18,6 @@ class Utilisateur extends CRUD {
         $utilisateur = $this->unique('nomUtilisateur',$nomUtilisateur);
         if($utilisateur){
             if(password_verify($motDePasse, $utilisateur['motDePasse'])){
-                session_regenerate_id();
-                $_SESSION['utilisateur_id'] = $utilisateur['id'];
-                $_SESSION['utilisateur_nom'] = $utilisateur['nom'];
-                $_SESSION['fingerPrint'] = md5($_SERVER['HTTP_USER_AGENT'].$_SERVER['REMOTE_ADDR']);
                 return true;
             }else{
                 return false;   
@@ -30,4 +26,14 @@ class Utilisateur extends CRUD {
             return false; 
         }
     }
+
+    public function creationSession($utilisateur){
+        session_regenerate_id();
+        $_SESSION['utilisateur_id'] = $utilisateur['id'];
+        $_SESSION['utilisateur_nomUtilisateur'] = $utilisateur['nomUtilisateur'];
+        $_SESSION['utilisateur_role'] = $utilisateur['role'];
+        $_SESSION['fingerPrint'] = md5($_SERVER['HTTP_USER_AGENT'].$_SERVER['REMOTE_ADDR']);
+        return $_SESSION;
+    }
 };
+

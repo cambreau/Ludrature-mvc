@@ -3,6 +3,13 @@
 }) }}
 
 <section>
+  {% if msgSuppression is defined %}
+        <p class="succes">{{msgSuppression}}</p>
+  {%endif%}
+  {% if msgCreation is defined %}
+        <p class="succes">{{msgCreation}}</p>
+  {%endif%}
+  
     <h2>Connexion</h2>
     <form class="form" method="post" action="/autorisations/connexion">
     {% if message is defined %}
@@ -24,7 +31,7 @@
         <div class="form__champ">
               <label for="motDePasse">Mot de passe :</label>
               <input
-                type="motDePasse"
+                type="password"
                 id="motDePasse"
                 name="motDePasse"
                 placeholder="Votre mot de passe"

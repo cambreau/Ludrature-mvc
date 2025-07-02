@@ -46,11 +46,10 @@ class ClientController{
             $clientCrud = new Client;
             $data['id_Utilisateur']=$utilisateur;
             $clientInsert = $clientCrud ->insert($data);
-            $client =$clientCrud ->selectId($data['id_Utilisateur']);
             unset($data); // Pour que le formulaire ne conserve pas les informations apres inscription.
            
-            if($client){
-                return View::render('autorisations/se-connecter',['msg'=>"Profil créé avec succès!"]);
+            if($clientInsert){
+                return View::render('autorisations/se-connecter',['msgCreation'=>"Profil créé avec succès!"]);
             }else{
                 return View::render('erreur404', ['message'=>"404 - L'insertion a échoué"]);  
             }

@@ -55,7 +55,7 @@ h1:hover {
 h2 {
   border-bottom: 1px solid var(--couleur-principale);
   padding-bottom: var(--rythme-serre);
-  margin-bottom: var(--rythme-base);
+  margin: var(--rythme-base) 0;
   font-size: var(--taille-police-grand);
   font-weight: var(--epaisseur-police-tres-gras);
   line-height: var(--interligne-grand);
@@ -78,11 +78,6 @@ h3 {
 .texte-accentuation {
   font-size: var(--taille-police-moyen);
   font-weight: var(--epaisseur-police-gras);
-}
-
-/* MAIN */
-main > * {
-  margin: var(--rythme-espace);
 }
 
 /* Flexbox layout to keep footer at bottom */

@@ -53,11 +53,13 @@ abstract class CRUD extends \PDO{
             $stmt->bindValue(":$key", $value);
         }
         if($stmt->execute()){
-            return $this->lastInsertId();
+            return $this->lastInsertId() ?: true;
         }else{
             return false;
         } 
     }
+
+
 
     public function update($data, $id){
         $data_cles = array_fill_keys($this->colonnes, '');
