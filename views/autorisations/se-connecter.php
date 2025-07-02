@@ -3,24 +3,24 @@
 }) }}
 
 <section>
-    <form class="form" method="post" action="autorisation/connexion">
+    <h2>Connexion</h2>
+    <form class="form" method="post" action="/autorisations/connexion">
+    {% if message is defined %}
+        <p class="erreur">{{message}}</p>
+    {%endif%}
         <div class="form__champ">
-              <label for="role">Role :</label>
-              <select id="role" name="role">
-                <option value="Administrateur">Administrateur</option>
-                <option value="Client">Client</option>
-             </select>
-        </div>
-        <div class="form__champ">
-              <label for="email">Adresse courriel :</label>
+              <label for="email">Nom d'utilisateur :</label>
               <input
-                type="email"
-                id="email"
-                name="email"
-                placeholder="ludrature@gmail.com"
+                type="text"
+                id="nomUtilisateur"
+                name="nomUtilisateur"
+                placeholder="Votre nom d'utilisateur"
                 required
               />
         </div>
+        {% if erreurs.nomUtilisateur is defined %}
+              <p class="erreur">{{erreurs.nomUtilisateur}}</p>
+        {%endif %}
         <div class="form__champ">
               <label for="motDePasse">Mot de passe :</label>
               <input
@@ -31,6 +31,9 @@
                 required
               />
         </div>
+        {% if erreurs.motDePasse is defined %}
+              <p class="erreur">{{erreurs.motDePasse}}</p>
+        {%endif %}
         <div class="form__btn-conteneur">
             <input class="form__btn-conteneur__btn" value="Se connecter" type="submit">
         </div>

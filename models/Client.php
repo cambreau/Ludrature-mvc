@@ -1,16 +1,11 @@
 <?php
 namespace App\Models;
-use App\Models\CRUD;
+use App\Models\Utilisateur;
 
-class Client extends CRUD {
+class Client extends Utilisateur {
     protected $table = "clients";
-    protected $clePrimaire = "id";
-    protected $colonnes = ['nom','prenom', 'email', 'adresse', 'codePostal', 'ville','motDePasse','role'];
+    protected $autoIncrement = false;
+    protected $clePrimaire = "id_Utilisateur";
+    protected $colonnes = ['id_Utilisateur','adresse', 'codePostal', 'ville'];
 
-    public function hashMotDePasse($password, $cost = 10){
-        $options = [
-                'cost' => $cost
-        ]; // Permet de choisir un autre cost en parametre.
-        return password_hash($password, PASSWORD_BCRYPT, $options); 
-    }
 }

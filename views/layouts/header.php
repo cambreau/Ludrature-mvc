@@ -51,6 +51,6 @@
             <a href="#">Livres <span>&#9663;</span></a>
           </div>
       </nav>
-      <a class="bouton bouton-petit bouton-rouge" href="{{base}}/autorisations/se-connecter">Se connecter</a>
+      <a class="bouton bouton-petit bouton-rouge" href="{{base}}/autorisations/status">Profil</a>
     </header>
     <main>

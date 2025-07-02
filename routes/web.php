@@ -7,11 +7,13 @@ Route::get('/accueil', 'AccueilController@index');
 Route::get('/index', 'AccueilController@index');
 Route::get('/index.php', 'AccueilController@index');
 
-Route::get('/autorisations/se-connecter', 'AutorisationController@seConnecter');
+Route::get('/autorisations/status', 'AutorisationController@status');
 Route::post('/autorisations/connexion', 'AutorisationController@connexion');
 
 Route::get('/clients/client-inscription', 'ClientController@pageInscription');
 Route::post('/clients/inscription', 'ClientController@inscription');
+Route::get('/clients/client-modification','ClientController@pageModification');
+Route::post('/clients/modifier','ClientController@modifier');
 
 Route::get('/produits/fiche-produit', 'ProduitsController@affichageProduit');
 Route::get('/produits/produits-ajouter', 'ProduitsController@formulaireAjouter');

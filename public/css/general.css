@@ -109,3 +109,14 @@ main {
 main > * {
   flex: 1;
 }
+
+.erreur {
+  color: var(--couleur-principale);
+  font-weight: var(--epaisseur-police-gras);
+}
+
+.succes {
+  color: rgb(4, 141, 57);
+  font-size: var(--taille-police-grand);
+  font-weight: var(--epaisseur-police-gras);
+}

@@ -1,10 +1,10 @@
 {{ include('layouts/header.php', {
-    title: 'Inscription - Ludrature : Boutique Jeux et Livre',
+    title: 'Modification Profil - Ludrature : Boutique Jeux et Livre',
 }) }}
 
 <section>
-        <h2>Inscription</h2>
-        <form class="form" method="post" action="/clients/inscription">
+        <h2>Modification du profil</h2>
+        <form class="form" method="post" action="/clients/modifier">
         <div class="form__champ">
               <label for="nomUtilisateur">Nom Utilisateur :</label>
               <input
@@ -142,7 +142,7 @@
               <p class="erreur">{{erreurs.confirmationMotPasse}}</p>
             {%endif %}
           <div class="form__btn-conteneur">
-            <input class="form__btn-conteneur__btn" value="S'inscrire" type="submit">
+            <input class="form__btn-conteneur__btn" value="Modifier" type="submit">
           </div>
         </form>
       </section>

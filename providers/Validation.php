@@ -39,7 +39,7 @@ class Validation {
      * https://www.php.net/manual/fr/function.strlen.php Calcul la taille d'une chaîne de caractères.
      */
     public function max($length){
-        if(strlen($this->valeur) >= $length ){
+        if(strlen($this->valeur) > $length ){
             $this->erreurs[$this->cle] = "$this->nom doit avoir moins de $length caractères";
         }
         return $this;
@@ -92,7 +92,7 @@ class Validation {
 
     public function confirmationChampIdentique($dataOriginale){
         if($this->valeur !== $dataOriginale){
-            $this->erreurs[$this->cle]="Les deux champs $this->nom doivent être identiques";  
+            $this->erreurs[$this->cle]="Les deux champs doivent être identiques";  
         }
     }
 

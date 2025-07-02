@@ -13,7 +13,7 @@
   grid-template-columns: 210px 1fr;
   gap: var(--rythme-serre);
   align-items: center;
-  margin-bottom: var(--rythme-base);
+  margin-top: var(--rythme-base);
 }
 
 .form__champ > label {

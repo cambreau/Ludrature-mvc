@@ -3,8 +3,10 @@
 }) }}
 
     <section>
-        <h2>Profil administrateur</h2>
-        <p>Bienvenue dans votre profil administrateur</p>
+        <h2>Catalogue produits</h2>
+    {% if message is defined %}
+        <h3> {{ message }} </h3>
+    {% endif %}
         <a href="{{base}}/produits/produits-ajouter" class="bouton">Ajouter un produit</a>
     </section>
     <section class="produits-section">

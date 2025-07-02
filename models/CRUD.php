@@ -53,8 +53,8 @@ abstract class CRUD extends \PDO{
             $stmt->bindValue(":$key", $value);
         }
         if($stmt->execute()){
-            return $this->autoIncrement ?? true ? $this->lastInsertId() : true;
-        } else {
+            return $this->lastInsertId();
+        }else{
             return false;
         } 
     }

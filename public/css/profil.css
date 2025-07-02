@@ -1,0 +1,7 @@
+.profil p {
+  margin: var(--rythme-serre);
+}
+
+.profil span {
+  font-weight: var(--epaisseur-police-tres-gras);
+}
