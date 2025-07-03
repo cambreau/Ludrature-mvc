@@ -43,6 +43,7 @@
           </button>
         </div>
       </form>
+      {% if session.utilisateur_id is not defined or session.utilisateur_role == 1 %}
       <nav class="menu-principal">
           <div class="sousMenu">
             <a href="#">Jeux de société <span>&#9663;</span></>
@@ -51,6 +52,13 @@
             <a href="#">Livres <span>&#9663;</span></a>
           </div>
       </nav>
+      {% endif %}
+      {% if session.utilisateur_id is defined and session.utilisateur_role == 2 %}
+        <div>
+          <a class="bouton bouton-petit" href="{{base}}/accueil">Catalogue Produit</a>
+          <a class="bouton bouton-petit" href="{{base}}/admin/tableau-bord">Tableau de bord</a>
+        </div>
+      {% endif %}
       <a class="bouton bouton-petit bouton-rouge" href="{{base}}/autorisations/status">Profil</a>
     </header>
     <main>

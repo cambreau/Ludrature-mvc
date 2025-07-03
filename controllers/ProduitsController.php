@@ -27,9 +27,9 @@ class ProduitsController{
     }
 
     public function formulaireAjouter(){
-        if(!isset($_SESSION) || $_SESSION['utilisateur_role'] !==2)
+        if(!isset($_SESSION['utilisateur_id'] ) || $_SESSION['utilisateur_role'] !==2)
         {
-            return View::render('erreur404', ['message'=>"Erreur - Nous n'avez pas les droits!"]);
+            return View::render('erreur404', ['message'=>"Erreur - Vous n'avez pas les droits!"]);
         }
             $categorieSelection = null;
             $themesSelection = null;
@@ -50,9 +50,9 @@ class ProduitsController{
     }
 
     public function actionAjouter($data){
-        if(!isset($_SESSION) || $_SESSION['utilisateur_role'] !==2)
+        if(!isset($_SESSION['utilisateur_id'] )  || $_SESSION['utilisateur_role'] !==2)
         {
-            return View::render('erreur404', ['message'=>"Erreur - Nous n'avez pas les droits!"]);
+            return View::render('erreur404', ['message'=>"Erreur - Vous n'avez pas les droits!"]);
         }
             // Validation des $data.
             $Validation = new Validation;
@@ -66,8 +66,8 @@ class ProduitsController{
             if($Validation->estUnSucces()){
                 // Insertion du produit.
                 $produitCrud = new Produit;
+                $_POST['age_max'] = isset($_POST['age_max']) && $_POST['age_max'] !== '' ? (int)$_POST['age_max'] : null;
                 $produit_id = $produitCrud->insert($_POST);
-                echo $produit_id;
                 if(!$produit_id){
                     return View::render('erreur404', ['message'=>"404 - L'insertion a échoué"]);   
                 }
@@ -105,9 +105,9 @@ class ProduitsController{
     }   
 
     public function formulaireModifier(){
-        if(!isset($_SESSION) || $_SESSION['utilisateur_role'] !==2)
+        if(!isset($_SESSION['utilisateur_id'] ) || $_SESSION['utilisateur_role'] !==2)
         {
-            return View::render('erreur404', ['message'=>"Erreur - Nous n'avez pas les droits!"]);
+            return View::render('erreur404', ['message'=>"Erreur - Vous n'avez pas les droits!"]);
         }
          if(isset($_GET['id']) && $_GET['id'] != null){
             // ** Recuperer les informations du produit.
@@ -186,9 +186,9 @@ class ProduitsController{
     }
 
     public function actionModifier($data){
-        if(!isset($_SESSION) || $_SESSION['utilisateur_role'] !==2)
+        if(!isset($_SESSION['utilisateur_id'] )  || $_SESSION['utilisateur_role'] !==2)
         {
-            return View::render('erreur404', ['message'=>"Erreur - Nous n'avez pas les droits!"]);
+            return View::render('erreur404', ['message'=>"Erreur - Vous n'avez pas les droits!"]);
         }
         // Validation des $data.
         $Validation = new Validation;
@@ -202,6 +202,7 @@ class ProduitsController{
         if($Validation->estUnSucces()){
             $produitCrud = new Produit;
             $produitId = $data['id'];
+            $$data['age_max'] = isset($_POST['age_max']) && $_POST['age_max'] !== '' ? (int)$_POST['age_max'] : null;
             // print_r($data);
             $produitModifie = $produitCrud->update($data, $produitId);
             return View::redirect("produits/fiche-produit?id=$produitId");
@@ -236,9 +237,9 @@ class ProduitsController{
     }
 
     public function supprimer($data){
-        if(!isset($_SESSION) || $_SESSION['utilisateur_role'] !==2)
+        if(!isset($_SESSION['utilisateur_id'] )  || $_SESSION['utilisateur_role'] !==2)
         {
-            return View::render('erreur404', ['message'=>"Erreur - Nous n'avez pas les droits!"]);
+            return View::render('erreur404', ['message'=>"Erreur - Vous n'avez pas les droits!"]);
         }
         // echo "Je suis dans supprimer";
         if(isset($data['id']) && $data['id'] != null){

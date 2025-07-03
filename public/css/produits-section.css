@@ -44,3 +44,7 @@
 .produit-description {
   margin-bottom: var(--rythme-base);
 }
+
+.produit__fiche-produit {
+  justify-items: center;
+}

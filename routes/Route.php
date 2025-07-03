@@ -29,7 +29,7 @@ class Route {
         //Fin Debug
 
         foreach(self::$routes as $route){
-            //Debug
+            // Debug
             // var_dump(BASE.$route['url']);
             // var_dump($route['method']);
             // echo ('<br>');

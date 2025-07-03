@@ -1,0 +1,75 @@
+.table__conteneur {
+  padding: var(--rythme-espace);
+  background-color: var(--couleur-fond);
+  font-family: var(--police-general);
+  color: var(--couleur-texte);
+  margin-top: var(--rythme-base);
+}
+
+.table__conteneur h2 {
+  font-size: var(--taille-police-gros);
+  font-weight: var(--epaisseur-police-gras);
+  margin-bottom: var(--rythme-base);
+  color: var(--couleur-principale);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+  border: 1px solid var(--couleur-bordure);
+  border-radius: var(--arrondi-grand);
+  overflow: hidden;
+}
+
+.table thead {
+  background-color: var(--couleur-principale);
+  color: white;
+}
+
+.table th,
+.table td {
+  padding: var(--rythme-serre);
+  text-align: left;
+  font-size: var(--taille-police-normal);
+  border-bottom: 1px solid var(--couleur-bordure);
+}
+
+.table tbody tr:hover {
+  background-color: var(--couleur-secondaire);
+  color: white;
+}
+
+.table__role-visiteur {
+  background-color: #f9e5e5;
+}
+
+.table__role-client {
+  background-color: #e5f9ef;
+}
+
+.table__role-admin {
+  background-color: #e5ecf9;
+}
+
+.table__role-visiteur:hover,
+.table__role-client:hover,
+.table__role-admin:hover {
+  opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+  .table__conteneur {
+    padding: var(--rythme-base);
+  }
+
+  .table th,
+  .table td {
+    font-size: var(--taille-police-petit);
+    padding: var(--rythme-tres-serre);
+  }
+
+  .table__conteneur h1 {
+    font-size: var(--taille-police-grand);
+  }
+}

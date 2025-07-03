@@ -10,10 +10,14 @@ use App\Providers\View;
 class UtilisateurController{
 
   public function pageModifier (){
-        //Recuperer les informations sur les villes.
+    if($_GET['id'] != $_SESSION['utilisateur_id']){
+      return View::render('erreur404', ['message'=>"Erreur - Vous n'avez pas les droits!"]);
+    }
+    else{
+        //Récupérer les informations sur les villes.
         $villesCrud = new Villes; 
         $villes = $villesCrud -> select();
-        //Recuperer les informations de l'utilisateur.
+        //Récupérer les informations de l'utilisateur.
         $utilisateurCrud= new Utilisateur();
         $informationsUtilisateur= $utilisateurCrud->selectId($_SESSION['utilisateur_id']);
         //Récupérer les informations supplémentaires liées au rôle de l'utilisateur.
@@ -30,9 +34,10 @@ class UtilisateurController{
         // Fusionner les informations utilisateur et supplémentaires en gardant les noms de clés
         $utilisateur = array_merge($informationsUtilisateur, $informationsSupplementaires);
         
-        //Renvoyer vers la view Clients/inscription
+        //Renvoyer vers la view de modification des utilisateurs.
         return View::render('utilisateurs/utilisateur-modifier', ['villes'=>$villes, 'utilisateur'=>$utilisateur] );
-  }
+      }
+    }
 
   public function modifier ($data){
     //Validation
@@ -96,6 +101,7 @@ class UtilisateurController{
         $utilisateur = array_merge($informationsUtilisateur, $informationsSupplementaires);
         // Regenere la session
         $session= $utilisateurCrud->creationSession($utilisateur);
+        // Renvoie vers le profil utilisateur.
         return View::render('utilisateurs/profil', ['utilisateur'=>$utilisateur]);
       }
        // Si les modifications de la table Client OU de la table Amin n'ont pas fonctionné:
@@ -113,21 +119,22 @@ class UtilisateurController{
       //Recuperer les informations sur les villes.
       $villesCrud = new Villes; 
       $villes = $villesCrud -> select();
+      //Renvoie vers la page de modification utilisateur.
       return View::render('utilisateurs/utilisateur-modifier', ['villes'=>$villes, 'utilisateur'=>$data,'erreurs'=>$erreurs]);
     }
   }
 
   public function supprimer(){
-    //Validation que la requete soit arrive par GET
+    // Validation que la requete soit arrive par GET
     if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
       return View::render('erreur404', ['Erreur 404 - Page introuvable!']);
     }
     else{
-      //On recupere l'id et on supprime la ligne dans la table Utilisateur.
+      // On recupere l'id et on supprime la ligne dans la table Utilisateur.
       $id=$_GET["id"];
       $crudUtilisateur = new Utilisateur;
       $utilisateurSupprime = $crudUtilisateur ->delete($id);
-      //Si la suppression a fonctionne on renvoie a la page de connexion avec un message de succes, sinon on redirige vers la page d'erreurs.
+      // Si la suppression a fonctionne on renvoie a la page de connexion avec un message de succes, sinon on redirige vers la page d'erreur.
       if($utilisateurSupprime){
         session_destroy();
         return View::render('autorisations/se-connecter',['msgSuppression'=>' Profil supprimé avec succès!']);

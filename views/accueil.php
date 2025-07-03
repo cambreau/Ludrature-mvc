@@ -3,6 +3,9 @@
 }) }}
 
     <section>
+    {% if session is defined and session.utilisateur_role == 1 %} 
+        <h2>Bienvenue {{session.utilisateur_nomUtilisateur}},</h2>
+    {% endif %}
     {% if message is defined %}
         <h3> {{ message }} </h3>
     {% endif %}
@@ -29,7 +32,7 @@
                             {% endif %} ans 
                         </p>
                     </div>  
-                    {% if session is defined and session.utilisateur_role == 1 %} 
+                    {% if session.utilisateur_id is not defined or session.utilisateur_role == 1 %} 
                     <button class="bouton bouton-petit">Ajouter au panier</button>
                     {% endif %}
                 </a>

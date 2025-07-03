@@ -25,6 +25,10 @@ Route::get('/utilisateurs/utilisateur-modifier', 'UtilisateurController@pageModi
 Route::post('/utilisateurs/modifier', 'UtilisateurController@modifier');
 Route::get('/utilisateurs/supprimer', 'UtilisateurController@supprimer');
 
+Route::get('/admin/admin-creation', 'AdminController@pageCreation');
+Route::post('/admin/admin-creation', 'AdminController@creation');
+Route::get('/admin/tableau-bord', 'TableauBordController@afficherTableauBord');
+
 
 
 Route::dispatch();
