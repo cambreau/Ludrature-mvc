@@ -125,23 +125,29 @@ class UtilisateurController{
   }
 
   public function supprimer(){
-    // Validation que la requete soit arrive par GET
-    if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
-      return View::render('erreur404', ['Erreur 404 - Page introuvable!']);
+    if($_GET['id'] != $_SESSION['utilisateur_id']){
+      return View::render('erreur404', ['message'=>"Erreur - Vous n'avez pas les droits!"]);
     }
     else{
-      // On recupere l'id et on supprime la ligne dans la table Utilisateur.
-      $id=$_GET["id"];
-      $crudUtilisateur = new Utilisateur;
-      $utilisateurSupprime = $crudUtilisateur ->delete($id);
-      // Si la suppression a fonctionne on renvoie a la page de connexion avec un message de succes, sinon on redirige vers la page d'erreur.
-      if($utilisateurSupprime){
-        session_destroy();
-        return View::render('autorisations/se-connecter',['msgSuppression'=>' Profil supprimé avec succès!']);
+      // Validation que la requete soit arrive par GET
+      if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
+        return View::render('erreur404', ['Erreur 404 - Page introuvable!']);
       }
       else{
-        return View::render('erreur404', ['message'=>"404 - La modification a échoué"]);
+        // On recupere l'id et on supprime la ligne dans la table Utilisateur.
+        $id=$_GET["id"];
+        $crudUtilisateur = new Utilisateur;
+        $utilisateurSupprime = $crudUtilisateur ->delete($id);
+        // Si la suppression a fonctionne on renvoie a la page de connexion avec un message de succes, sinon on redirige vers la page d'erreur.
+          if($utilisateurSupprime){
+            session_destroy();
+            return View::render('autorisations/se-connecter',['msgSuppression'=>' Profil supprimé avec succès!']);
+          }
+          else{
+            return View::render('erreur404', ['message'=>"404 - La modification a échoué"]);
+          }
       }
+    }
   }
-}
+
 }

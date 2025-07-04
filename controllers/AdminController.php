@@ -43,7 +43,7 @@ class AdminController{
                     //** On ajoute les données dans la table "utilisateur".
                     $utilisateurCrud = new Utilisateur;
                     $data['motDePasse'] = $utilisateurCrud ->hashMotDePasse($data['motDePasse']);
-                    $data['role'] = 1; // Correspond à l’ID du admin dans la table "rôle" de la base de données.
+                    $data['role'] = 2; // Correspond à l’ID du admin dans la table "rôle" de la base de données.
                     $utilisateur = $utilisateurCrud ->insert($data);
                     //** On ajoute des données dans la table "admin".
                     $adminCrud = new Admin;

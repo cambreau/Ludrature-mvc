@@ -15,16 +15,20 @@
                 {%if produit.age_max is defined %}   
                    - {{ produit.age_max }}
                 {% endif %}
-                ans
-                {% if session.utilisateur_id is defined or session.utilisateur_role == 2 %}
-                    <div class="bouton-conteneur">
-                        <a class="bouton" href="{{base}}/produits/produits-modifier?id={{ produit.id }}">Modifier</a>
-                        <form method="post" action="{{base}}/produit/supprimer">
-                            <input type="hidden" name="id" value="{{ produit.id }}">
-                            <button class="bouton bouton-rouge" type="submit">Supprimer</button>
-                        </form>
+                ans </p>
+                <p>{{session.utilisateur_role}}</p>
+                    <div class="bouton-conteneur"> 
+                        {% if session.utilisateur_id is not defined or session.utilisateur_role == 1 %} 
+                             <button class="bouton bouton-petit">Ajouter au panier</button>
+                        {% endif %}
+                        {% if session.utilisateur_id is defined and session.utilisateur_role == 2 %}
+                            <a class="bouton" href="{{base}}/produits/produits-modifier?id={{ produit.id }}">Modifier</a>
+                            <form method="post" action="{{base}}/produit/supprimer">
+                                <input type="hidden" name="id" value="{{ produit.id }}">
+                                <button class="bouton bouton-rouge" type="submit">Supprimer</button>
+                            </form>
+                        {% endif %}
                     </div>  
-                {% endif %}
             </div>    
      </section>
     </div>

@@ -115,7 +115,7 @@
               <p class="erreur">{{erreurs.confirmationMotPasse}}</p>
             {%endif %}
           <div class="form__btn-conteneur">
-            <input class="form__btn-conteneur__btn" value="S'inscrire" type="submit">
+            <input class="form__btn-conteneur__btn" value="Enregistrer" type="submit">
           </div>
         </form>
       </section>

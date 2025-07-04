@@ -14,8 +14,9 @@ class ProduitsController{
             $produit_id = $_GET['id'];
             $produitCrud = new Produit;
             $produit = $produitCrud -> selectId($produit_id);
+            $session = $_SESSION ?? null;
             if($produit){
-                return View::render('produits/fiche-produit',['produit'=>$produit]);
+                return View::render('produits/fiche-produit',['produit'=>$produit, 'session'=>$session]);
             }
             else{
                  return View::render('erreur404', ['message'=>'Produit introuvable!']);
@@ -46,7 +47,8 @@ class ProduitsController{
             // Recuperer les options de categorie.
             $categorieCrud = new Categorie;
             $categories = $categorieCrud->select();
-            return View::render('produits/produits-ajouter',['categories'=>$categories, 'themesJeux'=>$themesJeux, 'themesLivre'=>$themesLivre,'categorieSelection'=>$categorieSelection,'themesSelection'=>$themesSelection]);
+            $session = $_SESSION ?? null;
+            return View::render('produits/produits-ajouter',['categories'=>$categories, 'themesJeux'=>$themesJeux, 'themesLivre'=>$themesLivre,'categorieSelection'=>$categorieSelection,'themesSelection'=>$themesSelection,'session'=>$session]);
     }
 
     public function actionAjouter($data){
@@ -84,7 +86,8 @@ class ProduitsController{
                     }
                 }
                         $produit = $produitCrud -> selectId($produit_id);
-                        return View::render('produits/fiche-produit',['produit'=>$produit]);
+                        $session = $_SESSION ?? null;
+                        return View::render('produits/fiche-produit',['produit'=>$produit,'session'=>$session]);
             }
              else{
                 $erreurs = $Validation->geterreurs();
@@ -174,8 +177,8 @@ class ProduitsController{
                 //     echo '<br>';
                 // };
                 //Fin Debug
-
-                return View::render('produits/produits-modifier',['produit'=>$produit,'categorie'=>$categorie,'themes'=>$themes]);
+                $session = $_SESSION ?? null;
+                return View::render('produits/produits-modifier',['produit'=>$produit,'categorie'=>$categorie,'themes'=>$themes,'session'=>$session]);
             }  
             else{
                 return View::render('erreur404', ['message'=>'Produit introuvable!']);
@@ -184,7 +187,7 @@ class ProduitsController{
             return View::render('erreur404', ['message'=>'Erreur 404 - Page introuvable!']);
          }
     }
-    
+
     public function actionModifier($data){
         if(!isset($_SESSION['utilisateur_id'] )  || $_SESSION['utilisateur_role'] !==2)
         {
