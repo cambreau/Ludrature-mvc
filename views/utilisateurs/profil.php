@@ -3,8 +3,12 @@
 }) }}
 
 <section>
-<a class="bouton bouton-rouge" href="{{base}}/autorisations/deconnexion">Se deconnecter</a>
+
 <h2>Profil </h2> 
+<div class="profil__conteneur-btn">
+<a class="bouton bouton-rouge" href="{{base}}/autorisations/deconnexion">Se deconnecter</a>
+<a class="pdf" href="{{base}}/utilisateurs/profilPDF"> <img src="{{asset}}/images/pdf.svg"></a>
+</div>
 <div class="profil">
 <p><span>Nom d'utilisateur :</span> {{ utilisateur.nomUtilisateur }}</p>
 <p><span>Nom :</span> {{ utilisateur.nom }}</p>

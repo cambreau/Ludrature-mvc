@@ -29,7 +29,7 @@ Route::get('/admin/admin-creation', 'AdminController@pageCreation');
 Route::post('/admin/admin-creation', 'AdminController@creation');
 Route::get('/admin/tableau-bord', 'TableauBordController@afficherTableauBord');
 
-
+Route::get('/utilisateurs/profilPDF', 'EnregistrementPdfController@enregistrerPDF');
 
 Route::dispatch();
 

@@ -41,7 +41,6 @@ abstract class CRUD extends \PDO{
         return $stmt->fetchAll();
     }
 
-
     public function insert($data){
         $data_keys = array_fill_keys($this->colonnes, '');
         $data = array_intersect_key($data, $data_keys);
@@ -58,8 +57,6 @@ abstract class CRUD extends \PDO{
             return false;
         } 
     }
-
-
 
     public function update($data, $id){
         $data_cles = array_fill_keys($this->colonnes, '');

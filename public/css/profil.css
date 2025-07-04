@@ -5,3 +5,14 @@
 .profil span {
   font-weight: var(--epaisseur-police-tres-gras);
 }
+
+.profil__conteneur-btn {
+  display: flex;
+  gap: var(--rythme-espace);
+  align-items: center;
+  margin-bottom: var(--rythme-espace);
+}
+
+.profil__conteneur-btn > .bouton {
+  margin: 0;
+}

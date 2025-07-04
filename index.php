@@ -13,6 +13,7 @@ require_once 'vendor/autoload.php';
 require_once './config.php';
 require_once 'routes/web.php';
 
+// Fonction pour le tableau de bord.
 TableauBordController::logAction();
 
  ?>

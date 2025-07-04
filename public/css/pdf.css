@@ -1,0 +1,9 @@
+.pdf {
+  display: block;
+  width: 35px;
+}
+
+.pdf img {
+  width: 100%;
+  object-fit: contain;
+}

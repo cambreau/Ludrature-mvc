@@ -78,7 +78,6 @@ class AutorisationController{
          return View::render('autorisations/se-connecter', ['erreurs'=>$erreurs]);
       }
    }
-
    public function deconnexion (){
     // On détruit la session et on renvoie à la page de connexion.
     session_destroy();

@@ -184,7 +184,7 @@ class ProduitsController{
             return View::render('erreur404', ['message'=>'Erreur 404 - Page introuvable!']);
          }
     }
-
+    
     public function actionModifier($data){
         if(!isset($_SESSION['utilisateur_id'] )  || $_SESSION['utilisateur_role'] !==2)
         {
