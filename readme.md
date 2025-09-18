@@ -1,1 +1,7 @@
-CB-TP2.local
+# Projet_Ludrature
+Travail pratique de session php MVC 3
+
+### Auteur :
+Camille Breau
+
+
